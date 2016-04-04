@@ -1,0 +1,43 @@
+{
+  "name": "node-natural-sort",
+  "version": "0.8.1",
+  "description": "Natural Sort algorithm for Javascript - Version 0.8.1 - Released under MIT license",
+  "main": "natural-sort.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/posicore/node-natural-sort.git"
+  },
+  "keywords": [
+    "sort",
+    "alphanum",
+    "alphanumeric",
+    "natural",
+    "human",
+    "javascript",
+    "array",
+    "sorting",
+    "case sensitive",
+    "case insensitive",
+    "ascending",
+    "descending"
+  ],
+  "author": "Jim Palmer (based on chunking idea from Dave Koelle)",
+  "contributors": [
+    {
+      "name": "Olaf Ennen",
+      "email": "<olaf.ennen@gmail.com>"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/posicore/node-natural-sort/issues"
+  },
+  "homepage": "https://github.com/posicore/node-natural-sort",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.4.5"
+  }
+}

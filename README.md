@@ -1,79 +1,143 @@
+# node-natural-sort
 
-[Demo - Run QUnit test suite](http://overset.github.io/javascript-natural-sort/unit-tests.html)
+> A Node.js package containing a fast and lightweight function to be used in conjunction with Array.prototype.sort() or likewise functions of other (immutable) data structures using the default bubble sort. This will properly sort padded numbers, numbers preceding text, dates, floats, unicode, etc.
+> Written in ES6, includes <a href="https://mochajs.org/">Mocha</a> and <a href="http://chaijs.com/">Chai</a> unit tests.
 
-### Simple numerics
+## Install
 
-```javascript
->>> ['10',9,2,'1','4'].sort(naturalSort)
-['1',2,'4',9,'10']
+```
+npm install node-natural-sort
 ```
 
-### Floats
+## API
+
+### naturalSort()
+
+Returns a compare function that defines the sort order due to the given `options`.
 
 ```javascript
->>> ['10.0401',10.022,10.042,'10.021999'].sort(naturalSort)
-['10.021999',10.022,'10.0401',10.042]
+naturalSort(options?: {[key: string]: V}): comparator: (valueA: V, valueB: V) => number
 ```
 
-### Float & decimal notation
+#### JSON Schema for `options` parameter
+
+```json
+{
+  "properties": {
+      "caseSensitive": {
+        "type": "boolean"
+      },
+      "order": {
+        "enum": [ "ASC", "DESC" ]
+      }
+  },
+  "additionalProperties": false
+}
+```
+
+##### caseSensitive
+
+Compare items case-sensitive.
+Defaults to `true`.
+
+##### order
+
+Sorting in ascending or descending order.
+Defaults to `"ASC"`.
+
+#### Examples
+
+##### Simple numerics
 
 ```javascript
->>> ['10.04f','10.039F','10.038d','10.037D'].sort(naturalSort)
-['10.037D','10.038d','10.039F','10.04f']
+['10', 9, 2, '1', '4'].sort(naturalSort())
+// ['1', 2, '4', 9, '10']
 ```
 
-### Scientific notation
+##### Floats
 
 ```javascript
->>> ['1.528535047e5','1.528535047e7','1.528535047e3'].sort(naturalSort)
-['1.528535047e3','1.528535047e5','1.528535047e7']
+['10.0401', 10.022, 10.042, '10.021999'].sort(naturalSort())
+// ['10.021999', 10.022, '10.0401', 10.042]
 ```
 
-### IP addresses
+##### Float & decimal notation
 
 ```javascript
->>> ['192.168.0.100','192.168.0.1','192.168.1.1'].sort(naturalSort)
-['192.168.0.1','192.168.0.100','192.168.1.1']
+['10.04f', '10.039F', '10.038d', '10.037D'].sort(naturalSort())
+// ['10.037D', '10.038d', '10.039F', '10.04f']
 ```
 
-### Filenames
+##### Scientific notation
 
 ```javascript
->>> ['car.mov','01alpha.sgi','001alpha.sgi','my.string_41299.tif'].sort(naturalSort)
-['001alpha.sgi','01alpha.sgi','car.mov','my.string_41299.tif'
+['1.528535047e5', '1.528535047e7', '1.528535047e3'].sort(naturalSort())
+// ['1.528535047e3', '1.528535047e5', '1.528535047e7']
 ```
 
-### Dates
+##### IP addresses
 
 ```javascript
->>> ['10/12/2008','10/11/2008','10/11/2007','10/12/2007'].sort(naturalSort)
-['10/11/2007', '10/12/2007', '10/11/2008', '10/12/2008']
+['192.168.0.100', '192.168.0.1', '192.168.1.1'].sort(naturalSort())
+// ['192.168.0.1', '192.168.0.100', '192.168.1.1']
 ```
 
-### Money
+##### Filenames
 
 ```javascript
->>> ['$10002.00','$10001.02','$10001.01'].sort(naturalSort)
-['$10001.01','$10001.02','$10002.00']
+['car.mov', '01alpha.sgi', '001alpha.sgi', 'my.string_41299.tif'].sort(naturalSort())
+// ['001alpha.sgi', '01alpha.sgi', 'car.mov', 'my.string_41299.tif']
 ```
 
-### Movie Titles
+##### Dates
 
 ```javascript
->>> ['1 Title - The Big Lebowski','1 Title - Gattaca','1 Title - Last Picture Show'].sort(naturalSort)
-['1 Title - Gattaca','1 Title - Last Picture Show','1 Title - The Big Lebowski']
+['10/12/2008', '10/11/2008', '10/11/2007', '10/12/2007'].sort(naturalSort())
+// ['10/11/2007', '10/12/2007', '10/11/2008', '10/12/2008']
+
+['Mon, 15 Jun 2009 20:45:30 GMT', 'Mon, 3 May 2010 17:45:30 GMT', 'Mon, 15 Jun 2009 17:45:30 GMT'].sort(naturalSort())
+// ['Mon, 15 Jun 2009 17:45:30 GMT', 'Mon, 15 Jun 2009 20:45:30 GMT', 'Mon, 3 May 2010 17:45:30 GMT']
 ```
 
-### By default - case-sensitive sorting
+##### Money
 
 ```javascript
->>> ['a', 'B'].sort(naturalSort);
-['B', 'a']
+['$10002.00', '$10001.02', '$10001.01'].sort(naturalSort())
+// ['$10001.01', '$10001.02', '$10002.00']
 ```
 
-### To enable case-insensitive sorting
+##### By default - case-sensitive sorting
+
 ```javascript
->>> naturalSort.insensitive = true;
->>> ['a', 'B'].sort(naturalSort);
-['a', 'B']
+['A', 'b', 'C', 'd', 'E', 'f'].sort(naturalSort());
+// ['A', 'C', 'E', 'b', 'd', 'f']
 ```
+
+##### To enable case-insensitive sorting
+
+```javascript
+['A', 'C', 'E', 'b', 'd', 'f'].sort(naturalSort({caseSensitive: false}));
+// ['A', 'b', 'C', 'd', 'E', 'f']
+```
+
+##### By default - ascending order
+
+```javascript
+['a', 'c', 'f', 'd', 'e', 'b'].sort(naturalSort());
+// ['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+##### To enable descending order
+
+```javascript
+['a', 'c', 'f', 'd', 'e', 'b'].sort(naturalSort({order: 'DESC'}));
+['f', 'e', 'd', 'c', 'b', 'a']
+```
+
+##Credits
+
+Based on [javascript-natural-sort](https://github.com/overset/javascript-natural-sort) by Jim Palmer.
+
+## License
+
+MIT © [Olaf Ennen](https://github.com/posicore)
