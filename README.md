@@ -131,7 +131,7 @@ Defaults to `"ASC"`.
 
 ```javascript
 ['a', 'c', 'f', 'd', 'e', 'b'].sort(naturalSort({order: 'DESC'}));
-['f', 'e', 'd', 'c', 'b', 'a']
+// ['f', 'e', 'd', 'c', 'b', 'a']
 ```
 
 ##Credits
