@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/posicore/node-natural-sort.git"
+    "url": "https://github.com/yobacca/node-natural-sort.git"
   },
   "keywords": [
     "sort",
@@ -33,9 +33,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/posicore/node-natural-sort/issues"
+    "url": "https://github.com/yobacca/node-natural-sort/issues"
   },
-  "homepage": "https://github.com/posicore/node-natural-sort",
+  "homepage": "https://github.com/yobacca/node-natural-sort",
   "devDependencies": {
     "chai": "^3.4.1",
     "mocha": "^2.4.5"
