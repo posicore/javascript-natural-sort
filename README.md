@@ -140,4 +140,4 @@ Based on [javascript-natural-sort](https://github.com/overset/javascript-natural
 
 ## License
 
-MIT © [Olaf Ennen](https://github.com/posicore)
+MIT © [Olaf Ennen](https://github.com/yobacca)
