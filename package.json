@@ -1,11 +1,8 @@
 {
   "name": "node-natural-sort",
-  "version": "0.8.2",
-  "description": "Natural Sort algorithm for Javascript - Version 0.8.2 - Released under MIT license",
-  "main": "natural-sort.js",
-  "scripts": {
-    "test": "mocha"
-  },
+  "version": "0.8.3",
+  "description": "Natural Sort algorithm for Javascript - Version 0.8.3 - Released under MIT license",
+  "main": "js/natural-sort.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/yobacca/node-natural-sort.git"
@@ -37,7 +34,10 @@
   },
   "homepage": "https://github.com/yobacca/node-natural-sort",
   "devDependencies": {
-    "chai": "^3.4.1",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^0.10.4",
+    "gulp-mocha": "^2.2.0",
     "mocha": "^2.4.5"
   }
 }

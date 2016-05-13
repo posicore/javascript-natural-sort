@@ -6,17 +6,16 @@
  * original implementation by Jim Palmer (Version 0.8.1)
  * modified by Olaf Ennen
  *
- * https://github.com/posicore/node-natural-sort
+ * https://github.com/yobacca/node-natural-sort
  * released under MIT License
  */
 'use strict';
-
 const defaultOptions = {
   caseSensitive: true,
   order: 'ASC'
 };
 
-module.exports = function naturalSort(options) {
+module.exports = (options) => {
   if (typeof options !== 'object') {
     options = defaultOptions;
   }
@@ -32,19 +31,27 @@ module.exports = function naturalSort(options) {
     // convert all to strings strip whitespace
     const x = i(
       // switch parameter for descending order
-      options.order === 'DESC' ?
-      valueB :
-      valueA
+      options.order === 'DESC'
+        ? valueB
+        : valueA
     );
     const y = i(
       // switch parameter for descending order
-      options.order === 'DESC' ?
-      valueA :
-      valueB
+      options.order === 'DESC'
+        ? valueA
+        : valueB
     );
     // chunk/tokenize
-    const xN = x.replace(re, '\0$1\0').replace(/\0$/, '').replace(/^\0/, '').split('\0');
-    const yN = y.replace(re, '\0$1\0').replace(/\0$/, '').replace(/^\0/, '').split('\0');
+    const xN = x
+      .replace(re, '\0$1\0')
+      .replace(/\0$/, '')
+      .replace(/^\0/, '')
+      .split('\0');
+    const yN = y
+      .replace(re, '\0$1\0')
+      .replace(/\0$/, '')
+      .replace(/^\0/, '')
+      .split('\0');
     // numeric, hex or date detection
     const xD = parseInt(x.match(hre), 16) || (xN.length !== 1 && Date.parse(x));
     const yD = parseInt(y.match(hre), 16) || xD && y.match(dre) && Date.parse(y) || null;

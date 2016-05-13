@@ -1,23 +1,23 @@
 const expect = require('chai').expect;
-const naturalSort = require('../natural-sort');
+const naturalSort = require('../js/natural-sort');
 
-function wrapAssert(origArray, sortArray, options) {
-  it(`${origArray.toString()} should be returned as ${sortArray.toString()}`, function () {
+const wrapAssert = (origArray, sortArray, options) => {
+  it(`${origArray.toString()} should be returned as ${sortArray.toString()}`, () => {
     expect(origArray.sort(naturalSort(options))).to.deep.equal(sortArray);
   });
-}
+};
 
-function wrapTest(origArray, sortArray, message, options) {
+const wrapTest = (origArray, sortArray, message, options) => {
   if (!message) {
     wrapAssert(origArray, sortArray);
   } else {
-    describe(message, function () {
+    describe(message, () => {
       wrapAssert(origArray, sortArray, options);
     });
   }
-}
+};
 
-describe('different value types', function () {
+describe('different value types', () => {
   wrapTest(
     ['a', 1],
     [1, 'a'],
@@ -35,7 +35,7 @@ describe('different value types', function () {
   );
 });
 
-describe('datetime', function () {
+describe('datetime', () => {
   wrapTest(
     ['10/12/2008', '10/11/2008', '10/11/2007', '10/12/2007'],
     ['10/11/2007', '10/12/2007', '10/11/2008', '10/12/2008'],
@@ -196,7 +196,7 @@ describe('datetime', function () {
   );
 });
 
-describe('version number strings', function () {
+describe('version number strings', () => {
   wrapTest(
     ['1.0.2', '1.0.1', '1.0.0', '1.0.9'],
     ['1.0.0', '1.0.1', '1.0.2', '1.0.9'],
@@ -224,7 +224,7 @@ describe('version number strings', function () {
   );
 });
 
-describe('numerics', function () {
+describe('numerics', () => {
   wrapTest(
     ['10', 9, 2, '1', '4'],
     ['1', 2, '4', 9, '10'],
@@ -282,7 +282,7 @@ describe('numerics', function () {
   );
 });
 
-describe('IP addresses', function () {
+describe('IP addresses', () => {
   wrapTest(
     [
       '192.168.0.100',
@@ -305,7 +305,7 @@ describe('IP addresses', function () {
   );
 });
 
-describe('filenames', function () {
+describe('filenames', () => {
   wrapTest(
     ['img12.png', 'img10.png', 'img2.png', 'img1.png'],
     ['img1.png', 'img2.png', 'img10.png', 'img12.png'],
@@ -331,14 +331,14 @@ describe('filenames', function () {
   );
 });
 
-describe('space(s) as first character(s)', function () {
+describe('space(s) as first character(s)', () => {
   wrapTest(
     ['alpha', ' 1', '  3', ' 2', 0],
     [0, ' 1', ' 2', '  3', 'alpha']
   );
 });
 
-describe('empty strings and space character', function () {
+describe('empty strings and space character', () => {
   wrapTest(
     ['10023', '999', '', 2, 5.663, 5.6629],
     ['', 2, 5.6629, 5.663, '999', '10023']
@@ -349,20 +349,20 @@ describe('empty strings and space character', function () {
   );
 });
 
-describe('hex', function () {
+describe('hex', () => {
   wrapTest(
     ['0xA', '0x9', '0x99'],
     ['0x9', '0xA', '0x99'],
     'real hex numbers'
   );
   wrapTest(
-    ['0xZZ', '0xVVV', '0xVEV', '0xUU' ],
-    ['0xUU', '0xVEV', '0xVVV', '0xZZ' ],
+    ['0xZZ', '0xVVV', '0xVEV', '0xUU'],
+    ['0xUU', '0xVEV', '0xVVV', '0xZZ'],
     'fake hex numbers'
   );
 });
 
-describe('unicode', function () {
+describe('unicode', () => {
   wrapTest(
     ['\u0044', '\u0055', '\u0054', '\u0043'],
     ['\u0043', '\u0044', '\u0054', '\u0055'],
@@ -370,7 +370,7 @@ describe('unicode', function () {
   );
 });
 
-describe('sparse array sort', function () {
+describe('sparse array sort', () => {
   wrapTest(
     [3, 2, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 1],
     [1, 2, 3, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
@@ -378,7 +378,7 @@ describe('sparse array sort', function () {
   );
 });
 
-describe('case insensitive support', function () {
+describe('case insensitive support', () => {
   wrapTest(
     ['A', 'b', 'C', 'd', 'E', 'f'],
     ['A', 'b', 'C', 'd', 'E', 'f'],
@@ -405,7 +405,7 @@ describe('case insensitive support', function () {
   );
 });
 
-describe('rosetta code natural sort small test set', function () {
+describe('rosetta code natural sort small test set', () => {
   wrapTest(
     [
       'ignore leading spaces: 2-2',
@@ -511,7 +511,7 @@ describe('rosetta code natural sort small test set', function () {
   );
 });
 
-describe('descending support', function () {
+describe('descending support', () => {
   wrapTest(
     ['f', 'e', 'd', 'c', 'b', 'a'],
     ['f', 'e', 'd', 'c', 'b', 'a'],
@@ -538,7 +538,7 @@ describe('descending support', function () {
   );
 });
 
-describe('contributed tests', function () {
+describe('contributed tests', () => {
   wrapTest(
     [
       'T78',
