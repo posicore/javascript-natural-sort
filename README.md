@@ -134,10 +134,38 @@ Defaults to `"ASC"`.
 // ['f', 'e', 'd', 'c', 'b', 'a']
 ```
 
+## Development
+
+The following gulp tasks are provided.
+
+### Compress
+
+```
+gulp compress
+```
+
+Compress js/typewrite.js and copy to js/typewrite.min.js.
+
+### Test
+
+```
+gulp test
+```
+
+Execute Mocha/Chai tests and process code coverage recording using Istanbul.
+
+### TDD
+
+```
+gulp tdd
+```
+
+Watch changes, execute Mocha/Chai tests and process code coverage recording using Istanbul.
+
 ##Credits
 
 Based on [javascript-natural-sort](https://github.com/overset/javascript-natural-sort) by Jim Palmer.
 
 ## License
 
-[MIT](LICENCE.md) © [Olaf Ennen](https://github.com/yobacca)
+[MIT](LICENSE.md) © [Olaf Ennen](https://github.com/yobacca)
