@@ -138,14 +138,6 @@ Defaults to `"ASC"`.
 
 The following gulp tasks are provided.
 
-### Compress
-
-```
-gulp compress
-```
-
-Compress js/typewrite.js and copy to js/typewrite.min.js.
-
 ### Test
 
 ```
