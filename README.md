@@ -140,4 +140,4 @@ Based on [javascript-natural-sort](https://github.com/overset/javascript-natural
 
 ## License
 
-MIT © [Olaf Ennen](https://github.com/yobacca)
+[MIT](LICENCE.md) © [Olaf Ennen](https://github.com/yobacca)

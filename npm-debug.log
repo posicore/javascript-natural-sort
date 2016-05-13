@@ -1,0 +1,126 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.9.1
+3 info using node@v5.10.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/olaf/Sites/www/node-natural-sort',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/olaf/.npm/node-natural-sort/0.8.3/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/olaf/.npm correctMkdir not in flight; initializing
+10 info lifecycle node-natural-sort@0.8.3~prepublish: node-natural-sort@0.8.3
+11 silly lifecycle node-natural-sort@0.8.3~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/olaf/.npm/node-natural-sort/0.8.3/package.tgz',
+12 verbose tar pack   '/Users/olaf/Sites/www/node-natural-sort' ]
+13 verbose tarball /Users/olaf/.npm/node-natural-sort/0.8.3/package.tgz
+14 verbose folder /Users/olaf/Sites/www/node-natural-sort
+15 verbose addLocalTarball adding from inside cache /Users/olaf/.npm/node-natural-sort/0.8.3/package.tgz
+16 verbose correctMkdir /Users/olaf/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd node-natural-sort@0.8.3
+18 verbose afterAdd /Users/olaf/.npm/node-natural-sort/0.8.3/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/olaf/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/olaf/.npm/node-natural-sort/0.8.3/package/package.json written
+21 silly publish { name: 'node-natural-sort',
+21 silly publish   version: '0.8.3',
+21 silly publish   description: 'Natural Sort algorithm for Javascript - Version 0.8.3 - Released under MIT license',
+21 silly publish   main: 'js/natural-sort.js',
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/yobacca/node-natural-sort.git' },
+21 silly publish   keywords:
+21 silly publish    [ 'sort',
+21 silly publish      'alphanum',
+21 silly publish      'alphanumeric',
+21 silly publish      'natural',
+21 silly publish      'human',
+21 silly publish      'javascript',
+21 silly publish      'array',
+21 silly publish      'sorting',
+21 silly publish      'case sensitive',
+21 silly publish      'case insensitive',
+21 silly publish      'ascending',
+21 silly publish      'descending' ],
+21 silly publish   author:
+21 silly publish    { name: 'Jim Palmer',
+21 silly publish      url: 'based on chunking idea from Dave Koelle' },
+21 silly publish   contributors: [ { name: 'Olaf Ennen', email: '<olaf.ennen@gmail.com' } ],
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/yobacca/node-natural-sort/issues' },
+21 silly publish   homepage: 'https://github.com/yobacca/node-natural-sort',
+21 silly publish   devDependencies:
+21 silly publish    { chai: '^3.5.0',
+21 silly publish      gulp: '^3.9.1',
+21 silly publish      'gulp-istanbul': '^0.10.4',
+21 silly publish      'gulp-mocha': '^2.2.0',
+21 silly publish      mocha: '^2.4.5' },
+21 silly publish   readme: '# node-natural-sort\n\n> A Node.js package containing a fast and lightweight function to be used in conjunction with Array.prototype.sort() or likewise functions of other (immutable) data structures using the default bubble sort. This will properly sort padded numbers, numbers preceding text, dates, floats, unicode, etc.\n> Written in ES6, includes <a href="https://mochajs.org/">Mocha</a> and <a href="http://chaijs.com/">Chai</a> unit tests.\n\n## Install\n\n```\nnpm install node-natural-sort\n```\n\n## API\n\n### naturalSort()\n\nReturns a compare function that defines the sort order due to the given `options`.\n\n```javascript\nnaturalSort(options?: {[key: string]: V}): comparator: (valueA: V, valueB: V) => number\n```\n\n#### JSON Schema for `options` parameter\n\n```json\n{\n  "properties": {\n      "caseSensitive": {\n        "type": "boolean"\n      },\n      "order": {\n        "enum": [ "ASC", "DESC" ]\n      }\n  },\n  "additionalProperties": false\n}\n```\n\n##### caseSensitive\n\nCompare items case-sensitive.\nDefaults to `true`.\n\n##### order\n\nSorting in ascending or descending order.\nDefaults to `"ASC"`.\n\n#### Examples\n\n##### Simple numerics\n\n```javascript\n[\'10\', 9, 2, \'1\', \'4\'].sort(naturalSort())\n// [\'1\', 2, \'4\', 9, \'10\']\n```\n\n##### Floats\n\n```javascript\n[\'10.0401\', 10.022, 10.042, \'10.021999\'].sort(naturalSort())\n// [\'10.021999\', 10.022, \'10.0401\', 10.042]\n```\n\n##### Float & decimal notation\n\n```javascript\n[\'10.04f\', \'10.039F\', \'10.038d\', \'10.037D\'].sort(naturalSort())\n// [\'10.037D\', \'10.038d\', \'10.039F\', \'10.04f\']\n```\n\n##### Scientific notation\n\n```javascript\n[\'1.528535047e5\', \'1.528535047e7\', \'1.528535047e3\'].sort(naturalSort())\n// [\'1.528535047e3\', \'1.528535047e5\', \'1.528535047e7\']\n```\n\n##### IP addresses\n\n```javascript\n[\'192.168.0.100\', \'192.168.0.1\', \'192.168.1.1\'].sort(naturalSort())\n// [\'192.168.0.1\', \'192.168.0.100\', \'192.168.1.1\']\n```\n\n##### Filenames\n\n```javascript\n[\'car.mov\', \'01alpha.sgi\', \'001alpha.sgi\', \'my.string_41299.tif\'].sort(naturalSort())\n// [\'001alpha.sgi\', \'01alpha.sgi\', \'car.mov\', \'my.string_41299.tif\']\n```\n\n##### Dates\n\n```javascript\n[\'10/12/2008\', \'10/11/2008\', \'10/11/2007\', \'10/12/2007\'].sort(naturalSort())\n// [\'10/11/2007\', \'10/12/2007\', \'10/11/2008\', \'10/12/2008\']\n\n[\'Mon, 15 Jun 2009 20:45:30 GMT\', \'Mon, 3 May 2010 17:45:30 GMT\', \'Mon, 15 Jun 2009 17:45:30 GMT\'].sort(naturalSort())\n// [\'Mon, 15 Jun 2009 17:45:30 GMT\', \'Mon, 15 Jun 2009 20:45:30 GMT\', \'Mon, 3 May 2010 17:45:30 GMT\']\n```\n\n##### Money\n\n```javascript\n[\'$10002.00\', \'$10001.02\', \'$10001.01\'].sort(naturalSort())\n// [\'$10001.01\', \'$10001.02\', \'$10002.00\']\n```\n\n##### By default - case-sensitive sorting\n\n```javascript\n[\'A\', \'b\', \'C\', \'d\', \'E\', \'f\'].sort(naturalSort());\n// [\'A\', \'C\', \'E\', \'b\', \'d\', \'f\']\n```\n\n##### To enable case-insensitive sorting\n\n```javascript\n[\'A\', \'C\', \'E\', \'b\', \'d\', \'f\'].sort(naturalSort({caseSensitive: false}));\n// [\'A\', \'b\', \'C\', \'d\', \'E\', \'f\']\n```\n\n##### By default - ascending order\n\n```javascript\n[\'a\', \'c\', \'f\', \'d\', \'e\', \'b\'].sort(naturalSort());\n// [\'a\', \'b\', \'c\', \'d\', \'e\', \'f\']\n```\n\n##### To enable descending order\n\n```javascript\n[\'a\', \'c\', \'f\', \'d\', \'e\', \'b\'].sort(naturalSort({order: \'DESC\'}));\n// [\'f\', \'e\', \'d\', \'c\', \'b\', \'a\']\n```\n\n##Credits\n\nBased on [javascript-natural-sort](https://github.com/overset/javascript-natural-sort) by Jim Palmer.\n\n## License\n\nMIT © [Olaf Ennen](https://github.com/yobacca)\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '5f230b3e38433648c8ff75b7d99dcad278a69c53',
+21 silly publish   _id: 'node-natural-sort@0.8.3',
+21 silly publish   scripts: {},
+21 silly publish   _shasum: 'b8de4ee7c808bd46564903cb9f87ca17b3d6467a',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name node-natural-sort
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'node-natural-sort',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   name: 'node-natural-sort',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/node-natural-sort
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/olaf/.npm/node-natural-sort/0.8.3/package.tgz
+30 verbose request uri https://registry.npmjs.org/node-natural-sort
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 14:39:37
+33 verbose request using bearer token for auth
+34 verbose request id 330e91f5130d8b0b
+35 http request PUT https://registry.npmjs.org/node-natural-sort
+36 http 403 https://registry.npmjs.org/node-natural-sort
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Fri, 13 May 2016 12:39:39 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-fra1230-FRA',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1463143177.930565,VS0,VE1151',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating /Users/olaf/.npm/registry.npmjs.org/node-natural-sort on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 0.8.3." : node-natural-sort
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+40 verbose stack     at emitTwo (events.js:100:13)
+40 verbose stack     at Request.emit (events.js:185:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+40 verbose stack     at emitOne (events.js:95:20)
+40 verbose stack     at Request.emit (events.js:182:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid node-natural-sort
+43 verbose cwd /Users/olaf/Sites/www/node-natural-sort
+44 error Darwin 15.4.0
+45 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v5.10.0
+47 error npm  v3.9.1
+48 error code E403
+49 error "You cannot publish over the previously published version 0.8.3." : node-natural-sort
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
