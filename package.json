@@ -1,7 +1,7 @@
 {
   "name": "node-natural-sort",
-  "version": "0.8.4",
-  "description": "Natural Sort algorithm for Javascript - Version 0.8.4 - Released under MIT license",
+  "version": "0.8.5",
+  "description": "Natural Sort algorithm for Javascript - Version 0.8.5 - Released under MIT license",
   "main": "js/natural-sort.js",
   "repository": {
     "type": "git",
