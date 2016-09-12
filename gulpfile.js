@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const babel = require('gulp-babel');
 const istanbul = require('gulp-istanbul');
 const mocha = require('gulp-mocha');
 
@@ -23,4 +24,14 @@ gulp.task('test', () =>
 // Watch files for changes
 gulp.task('tdd', () => {
   gulp.watch(['./js/*.js', './test/*.js'], ['test']);
+});
+
+
+//transpile
+gulp.task('default', () => {
+    return gulp.src('js/*.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('lib'));
 });
