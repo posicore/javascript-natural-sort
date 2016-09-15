@@ -154,6 +154,14 @@ gulp tdd
 
 Watch changes, execute Mocha/Chai tests and process code coverage recording using Istanbul.
 
+### Build (default task)
+
+```
+gulp
+```
+
+Transpile the source. (Run primarily by npm during the prepublish step)
+
 ##Credits
 
 Based on [javascript-natural-sort](https://github.com/overset/javascript-natural-sort) by Jim Palmer.
