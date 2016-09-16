@@ -1,7 +1,7 @@
 # node-natural-sort
 
 > A Node.js package containing a fast and lightweight function to be used in conjunction with Array.prototype.sort() or likewise functions of other (immutable) data structures using the default bubble sort. This will properly sort padded numbers, numbers preceding text, dates, floats, unicode, etc.
-> Written in ES6, includes unit tests using Mocha and Chai and code coverage using Istanbul.
+> Written in ES6, transpiled to ES5, includes unit tests using Mocha and Chai and code coverage using Istanbul.
 
 ## Install
 
