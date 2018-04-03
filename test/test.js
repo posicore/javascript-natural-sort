@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const naturalSort = require('../js/natural-sort');
+const naturalSort = require('../src/natural-sort');
 
 const wrapAssert = (origArray, sortArray, options) => {
   it(`${origArray.toString()} should be returned as ${sortArray.toString()}`, () => {
