@@ -12,7 +12,8 @@
 'use strict';
 const defaultOptions = {
   caseSensitive: true,
-  order: 'ASC'
+  order: 'ASC',
+  getter: val => val
 };
 
 module.exports = (options) => {
@@ -32,14 +33,14 @@ module.exports = (options) => {
     const x = i(
       // switch parameter for descending order
       options.order === 'DESC'
-        ? valueB
-        : valueA
+        ? options.getter(valueB)
+        : options.getter(valueA)
     );
     const y = i(
       // switch parameter for descending order
       options.order === 'DESC'
-        ? valueA
-        : valueB
+        ? options.getter(valueA)
+        : options.getter(valueB)
     );
     // chunk/tokenize
     const xN = x
