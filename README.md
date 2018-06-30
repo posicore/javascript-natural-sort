@@ -1,3 +1,7 @@
+# Status of this module
+
+This module is deprecated. Please use [natural-orderby](https://www.npmjs.com/package/natural-orderby) instead. It is more mature, performant and offers additional-features.
+
 # node-natural-sort
 
 > A Node.js package containing a fast and lightweight function to be used in conjunction with Array.prototype.sort() or likewise functions of other (immutable) data structures using the default bubble sort. This will properly sort padded numbers, numbers preceding text, dates, floats, unicode, etc.
